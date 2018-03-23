@@ -5,7 +5,7 @@ module.exports = {
   "extends": "airbnb-base",
   "rules": {
     "no-use-before-define": ["error", { "functions": false, "classes": true }],
-    "func-names": ["error", "as-needed"],
+    "func-names": "off",
     "import/no-extraneous-dependencies": ["error", {"devDependencies": ["**/*webpack*.js", "**/*.config.js"], "optionalDependencies": false, "peerDependencies": false}],
     "no-shadow": "off",
     "no-console": "off",
@@ -14,5 +14,6 @@ module.exports = {
     "linebreak-style": "off",
     "no-unused-vars": "off",
     "global-require": "off",
+    "class-methods-use-this": "off"
   }
 };
