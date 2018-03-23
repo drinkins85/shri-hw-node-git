@@ -9,16 +9,17 @@ class GitApi {
 
   cloneRepo(repoUrl) {
     // url verify
-    const command = ['clone', repoUrl, this.path];
+    const command = ['clone', '--bare', repoUrl, this.path];
     return executeGitCommand(command)
-      .then(() => console.log('Репозиторий склонирован'));
+      .then(() => console.log('Репозиторий склонирован'))
+      .catch(err => console.log(err));
   }
 
   getBranchList() {
     const command = ['branch'];
     return executeGitCommand(command, { cwd: this.path })
       .then((res) => {
-        const branches = res.split(/\n\s*/).filter((brName) => brName !== '');
+        const branches = res.split(/\n\s*/).filter(brName => brName !== '');
         for (let i = 0; i < branches.length; i++) {
           if (branches[i][0] === '*') {
             branches[i] = branches[i].slice(2);
