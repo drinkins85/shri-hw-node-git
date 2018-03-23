@@ -6,30 +6,45 @@ const app = express();
 const port = process.env.PORT || 5002;
 const host = '0.0.0.0';
 
-const path = 'public/_repo';
+const path = '_repo';
 const GitApi = require('./gitApi/GitApi');
 
 const gitApi = new GitApi(path);
-const isGit = require('is-git-repository');
+
 
 app.use(express.static(`${__dirname}/public`));
-hbs.registerPartials(__dirname + '/views/blocks');
+hbs.registerPartials(`${__dirname}/views/blocks`);
 app.set('view engine', 'hbs');
 
 app.get('/', (req, res) => {
-  console.log(path);
-  console.log(isGit('/blablabla/dsd'));
-  if (false) {
-    gitApi.getBranchList().then((branchList) => {
+  gitApi.getBranchList()
+    .then((branchList) => {
       res.render('home.hbs', {
         pageTitle: 'Main page',
         branchList,
       });
+    })
+    .catch((err) => {
+      console.error();
+      res.rend('Ошибка');
     });
-  } else {
-    res.send('Empty repo');
-  }
 });
+
+
+app.get('/:branch', (req, res) => {
+  const branchName = req.params.branch;
+  gitApi.getBranchFiles(branchName)
+    .then((fileList) => {
+      res.render('branch.hbs', {
+        pageTitle: branchName,
+        fileList,
+      });
+    })
+    .catch((err) => {
+      console.error(err);
+    });
+});
+
 
 app.get('/git-clone', (req, res) => {
   gitApi.cloneRepo('https://github.com/drinkins85/Peppermint.git')

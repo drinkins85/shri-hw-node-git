@@ -1,4 +1,5 @@
 const executeGitCommand = require('./executeGitCommand');
+const filelistFormatter = require('./filelistFormatter');
 
 
 class GitApi {
@@ -16,7 +17,7 @@ class GitApi {
   }
 
   getBranchList() {
-    const command = ['branch'];
+    const command = ['branch', '--list'];
     return executeGitCommand(command, { cwd: this.path })
       .then((res) => {
         const branches = res.split(/\n\s*/).filter(brName => brName !== '');
@@ -27,14 +28,18 @@ class GitApi {
             break;
           }
         }
-        return {
-          list: branches,
-        };
+        return branches;
       });
   }
 
-  getBranchFiles() {
-
+  getBranchFiles(branchName) {
+    const command = ['cat-file', '-p', `${branchName}^{tree}`];
+    return executeGitCommand(command, { cwd: this.path })
+      .then(res => filelistFormatter(res))
+      .catch((err) => {
+        console.error(err);
+        return [];
+      });
   }
 
   getCommitFiles() {
