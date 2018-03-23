@@ -1,22 +1,34 @@
 const express = require('express');
+const hbs = require('hbs');
 
 const app = express();
 
 const port = process.env.PORT || 5002;
 const host = '0.0.0.0';
 
-const path = '_repo';
+const path = 'public/_repo';
 const GitApi = require('./gitApi/GitApi');
 
 const gitApi = new GitApi(path);
 const isGit = require('is-git-repository');
 
 app.use(express.static(`${__dirname}/public`));
-
+hbs.registerPartials(__dirname + '/views/blocks');
+app.set('view engine', 'hbs');
 
 app.get('/', (req, res) => {
-  // console.log(isGit(path));
-  res.send('Hello, World');
+  console.log(path);
+  console.log(isGit('/blablabla/dsd'));
+  if (false) {
+    gitApi.getBranchList().then((branchList) => {
+      res.render('home.hbs', {
+        pageTitle: 'Main page',
+        branchList,
+      });
+    });
+  } else {
+    res.send('Empty repo');
+  }
 });
 
 app.get('/git-clone', (req, res) => {
