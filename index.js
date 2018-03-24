@@ -1,5 +1,8 @@
 const express = require('express');
 const hbs = require('hbs');
+const fs = require('fs');
+const bodyParser = require('body-parser');
+const checkDir = require('./gitApi/checkDir');
 
 const app = express();
 
@@ -10,6 +13,7 @@ const path = '_repo';
 const GitApi = require('./gitApi/GitApi');
 
 const gitApi = new GitApi(path);
+
 
 hbs.registerHelper('showFS', (files) => {
   let list = '';
@@ -24,21 +28,29 @@ hbs.registerHelper('showFS', (files) => {
   return new hbs.SafeString(`<ul>${list}</ul>`);
 });
 
+app.use(bodyParser.text());
 app.use(express.static(`${__dirname}/public`));
 hbs.registerPartials(`${__dirname}/views/blocks`);
 app.set('view engine', 'hbs');
 
 app.get('/', (req, res) => {
-  gitApi.getBranchList()
-    .then((branchList) => {
-      res.render('home.hbs', {
-        pageTitle: 'Main page',
-        branchList,
-      });
+  checkDir(path)
+    .then(() => {
+      gitApi.getBranchList()
+        .then((branchList) => {
+          res.render('home.hbs', {
+            pageTitle: 'Main page',
+            branchList,
+            repoExist: true,
+          });
+        })
+        .catch(err => console.error(err));
     })
     .catch((err) => {
-      console.error();
-      res.rend('Ошибка');
+      res.render('home.hbs', {
+        pageTitle: 'Main page',
+        repoExist: false,
+      });
     });
 });
 
@@ -140,8 +152,9 @@ app.get('/getfilecontent/:hash', (req, res) => {
 });
 
 
-app.get('/git-clone', (req, res) => {
-  gitApi.cloneRepo('https://github.com/drinkins85/Peppermint.git')
+app.post('/git-clone', (req, res) => {
+  const repoUrl = req.body;
+  gitApi.cloneRepo(repoUrl)
     .then(() => res.send('OK'))
     .catch(err => res.send('FAIL ', err));
 });

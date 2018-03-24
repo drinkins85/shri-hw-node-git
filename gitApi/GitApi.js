@@ -1,18 +1,12 @@
 const executeGitCommand = require('./executeGitCommand');
 const filelistFormatter = require('./filelistFormatter');
+const isGitUrl = require('is-git-url');
+const removeDir = require('./removeDir');
 
 
 class GitApi {
   constructor(path) {
     this.path = path;
-  }
-
-  cloneRepo(repoUrl) {
-    // url verify
-    const command = ['clone', '--bare', repoUrl, this.path];
-    return executeGitCommand(command)
-      .then(() => console.log('Репозиторий склонирован'))
-      .catch(err => console.log(err));
   }
 
   getBranchList() {
@@ -29,15 +23,6 @@ class GitApi {
         });
       })
       .catch(err => console.error(err));
-  }
-
-  checkout(branchName) {
-    const command = ['checkout', branchName];
-    return executeGitCommand(command, { cwd: this.path })
-      .then(res => branchName)
-      .catch((err) => {
-        console.log(err);
-      });
   }
 
   getBranchFiles(branchName) {
@@ -67,7 +52,6 @@ class GitApi {
       .catch(err => console.error(err));
   }
 
-
   getCommitFiles(commitHash) {
     const command = ['cat-file', '-p', commitHash];
     return executeGitCommand(command, { cwd: this.path })
@@ -90,6 +74,21 @@ class GitApi {
     const command = ['show', fileHash];
     return executeGitCommand(command, { cwd: this.path });
   }
+
+  cloneRepo(repoUrl) {
+    if (!isGitUrl(repoUrl)) {
+      return Promise.reject();
+    }
+    return removeDir(this.path)
+      .then(() => {
+        const command = ['clone', '--bare', repoUrl, this.path];
+        return executeGitCommand(command)
+          .then(() => console.log('Репозиторий склонирован'))
+          .catch(err => console.log(err));
+      })
+      .catch(err => console.log(err));
+  }
+
 }
 
 module.exports = GitApi;

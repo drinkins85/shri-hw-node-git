@@ -11,6 +11,8 @@
 
 <h1>{{pageTitle}}</h1>
 
+{{#if repoExist }}
+
 <h3>Branches</h3>
 
 <div class="branches">
@@ -19,7 +21,16 @@
   {{/each}}
 </div>
 
+{{/if}}
 
+
+
+<form class="repo-upload-form">
+  <input type="text" name="repoUrl" placeholder="Ссылка на репозиторий" class="input repo-upload-form__input" >
+  <button type="submit" class="button repo-upload-form__button">Загрузить</button>
+</form>
+
+<script src="/js/bundle.js"></script>
 
 </body>
 </html>

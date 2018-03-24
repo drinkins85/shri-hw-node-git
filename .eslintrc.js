@@ -16,6 +16,7 @@ module.exports = {
     "global-require": "off",
     "class-methods-use-this": "off",
     "prefer-destructuring": "off",
-    "no-param-reassign": "off"
+    "no-param-reassign": "off",
+    "no-useless-escape": "off"
   }
 };

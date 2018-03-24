@@ -1,5 +1,6 @@
 import '../styles/main.scss';
 import getFileContent from './getFileContent';
+import uploadRepo from './uploadRepo';
 
 document.addEventListener('DOMContentLoaded', () => {
   const buttons = document.querySelectorAll('.fileBtn');
@@ -13,4 +14,19 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
   });
+
+  const uploadForm = document.querySelector('.repo-upload-form');
+  if (uploadForm) {
+    uploadForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const url = uploadForm.querySelector('.repo-upload-form__input').value;
+      const btn = uploadForm.querySelector('.repo-upload-form__button');
+      btn.innerHTML = 'Загрузка';
+      btn.setAttribute('disabled', 'disabled');
+      uploadRepo(url)
+        .then(() => {
+          window.location.reload();
+        });
+    });
+  }
 });
