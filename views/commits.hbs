@@ -11,13 +11,15 @@
 
 <h1>{{pageTitle}}</h1>
 
-<h3>Branches</h3>
+<h3>Commits</h3>
 
-<div class="branches">
-  {{#each branchList}}
-    <li> {{this}} <a href="/{{this}}/files/">[files]</a>  <a href="/{{this}}/commits/">[commits]</a></li>
+<div class="files">
+  {{#each commitList}}
+    <li>{{this.date}} <a href="{{this.hash}}/">{{this.subject}}</a> </li>
   {{/each}}
 </div>
+
+
 
 
 

@@ -14,6 +14,8 @@ module.exports = {
     "linebreak-style": "off",
     "no-unused-vars": "off",
     "global-require": "off",
-    "class-methods-use-this": "off"
+    "class-methods-use-this": "off",
+    "prefer-destructuring": "off",
+    "no-param-reassign": "off"
   }
 };

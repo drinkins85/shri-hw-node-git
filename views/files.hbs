@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>{{pageTitle}}</title>
+</head>
+<body>
+
+
+{{> header}}
+
+<h1>{{pageTitle}}</h1>
+
+<h3>Files</h3>
+
+{{#if parentLevel}}
+  <a href="{{parentLevel}}">[...]</a>
+{{/if}}
+
+{{showFS fileList}}
+
+<pre class="file-viewer"></pre>
+
+<script src="/js/bundle.js"></script>
+
+
+</body>
+</html>
