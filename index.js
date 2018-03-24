@@ -17,7 +17,8 @@ hbs.registerHelper('showFS', (files) => {
     if (item.type === 'tree') {
       list += `<li>[<a href="${item.hash}/" class="tree">${item.filename}</a>]</li>`;
     } else {
-      list += `<li><a href="file/${item.hash}" class="file">${item.filename}</a></li>`;
+      list += `<li><a href="file/${item.hash}" class="file">${item.filename}</a> 
+               <button data-hash="${item.hash}" class="fileBtn">[]</button></li>`;
     }
   });
   return new hbs.SafeString(`<ul>${list}</ul>`);
@@ -98,16 +99,44 @@ app.get('/:branch/commits/', (req, res) => {
     .catch(err => console.error(err));
 });
 
-app.get('/:branch/commits/:hash', (req, res) => {
+app.get('/:branch/commits/:hash/*', (req, res) => {
+  const branchName = req.params.branch;
   const hash = req.params.hash;
-  gitApi.getCommitFiles(hash)
-    .then((fileList) => {
-      res.render('files.hbs', {
-        pageTitle: hash,
-        fileList,
-      });
-    })
-    .catch(err => console.error(err));
+  const levels = req.params[0].split('/').filter(item => item !== '');
+  if (levels.length === 0) {
+    gitApi.getCommitFiles(hash)
+      .then((fileList) => {
+        res.render('files.hbs', {
+          pageTitle: hash,
+          fileList,
+          parentLevel: false,
+        });
+      })
+      .catch(err => console.error(err));
+  } else {
+    const currentTree = levels[levels.length - 1];
+    let parentLevel;
+    if (levels.length > 1) {
+      parentLevel = `/${branchName}/commits/${hash}/${levels.slice(0, levels.length - 1).join('/')}`;
+    } else {
+      parentLevel = `/${branchName}/commits/${hash}/`;
+    }
+    gitApi.getTreeFiles(currentTree)
+      .then((fileList) => {
+        res.render('files.hbs', {
+          pageTitle: branchName,
+          fileList,
+          parentLevel,
+        });
+      })
+      .catch(err => console.error(err));
+  }
+});
+
+app.get('/getfilecontent/:hash', (req, res) => {
+  const fileHash = req.params.hash;
+  gitApi.showFile(fileHash)
+    .then(fileContent => res.send(fileContent));
 });
 
 
