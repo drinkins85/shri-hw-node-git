@@ -13,6 +13,6 @@ deploy:
     secure: zaWkxNL9n0dHD5QYzBDqfLDLvasS/R5eFsYARhDJ2amHCzaxd4KHZevw+KKT8xxid053vYkKR6TTDkqX4vIUOn+LhoO2rHhcjJs4md4PHn1Wo7wDb12S/egHzru9u0SzahJnvgE4Zzusy9LWtiGk865/IK6xnv+0EC2l+3o5mQdfh6rowy4looYAA4VMvZcWctItmlr9HwA915ecMbsq4NHmDsVHJ5e43JFL3bzggHcZ93d86XsAQArcxh9Y9r+qMBCkrHflyldrdCNRpLQvceG8+WebVOp+aTQAaNynLcf4FTut50TpjTP8tv+X1BumwLtbUlo86VjNmekFdOFCjfHVArvmGhwZRJJFax61xuwlxm2j5y1FYemotkJj4fcntqXs+0+XgyeOmvXFchH6vx83RNFOkJO4nEnUAvGpjQ5GuVYq+Yjco6LPqt/f5krT6BJUq97C+xM+Y9qdDYEwfjuL0F27a4xNhTybEUtReE5zLJy0yYOA5srW+ob5ru7NMq9jzcfiFRODtuX4ureVWZ9ZXSsAeSNXgcKrfXbXMWBZrmBOfcL+295gw0v/Yzqc+RqsWmMhIKoRiSBb28Xi/l5BcERJ4qfW3vQ246/FEyon7h1eurOOz5fjI1JysUditWT+6a00THLVRUpPrygvlkS7LQzoBAnA50+ZXlcW+xQ=
   script:
     - npm run build
-  app: shri-hw-node-git
+  app: shri-hw-node
   on:
     repo: drinkins85/shri-hw-node-git
