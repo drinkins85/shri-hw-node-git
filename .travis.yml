@@ -1,0 +1,27 @@
+language: node_js
+
+node_js:
+  - 'node'
+#  - '8'
+#  - '6'
+#  - '4'
+
+os:
+  - linux
+#  - osx
+
+notifications:
+  email: false
+
+script:
+  - npm run ci
+
+
+#deploy:
+#  stage: Deploy (development)
+#  provider: heroku
+#  app: node-git-test-app
+#  api_key:
+#    secure: "adbe9610-2f0b-4b47-8966-0d65d58f3ec0"
+
+
