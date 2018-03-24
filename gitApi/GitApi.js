@@ -5,7 +5,6 @@ const filelistFormatter = require('./filelistFormatter');
 class GitApi {
   constructor(path) {
     this.path = path;
-    this.currentBranch = 0;
   }
 
   cloneRepo(repoUrl) {
@@ -21,14 +20,23 @@ class GitApi {
     return executeGitCommand(command, { cwd: this.path })
       .then((res) => {
         const branches = res.split(/\n\s*/).filter(brName => brName !== '');
-        for (let i = 0; i < branches.length; i++) {
-          if (branches[i][0] === '*') {
-            branches[i] = branches[i].slice(2);
-            this.currentBranch = i;
-            break;
+        return branches.map((branchName) => {
+          if (branchName[0] === '*') {
+            branchName = branchName.slice(2);
           }
-        }
-        return branches;
+          branchName = branchName.replace(/(^\s+|\s+$)/g, '');
+          return branchName;
+        });
+      })
+      .catch(err => console.error(err));
+  }
+
+  checkout(branchName) {
+    const command = ['checkout', branchName];
+    return executeGitCommand(command, { cwd: this.path })
+      .then(res => branchName)
+      .catch((err) => {
+        console.log(err);
       });
   }
 
@@ -42,16 +50,45 @@ class GitApi {
       });
   }
 
-  getCommitFiles() {
-
+  getBranchCommits(branchName) {
+    const command = ['log', branchName, '--pretty=format:%at|%H|%s'];
+    return executeGitCommand(command, { cwd: this.path })
+      .then((res) => {
+        const commitsRow = res.split('\n');
+        return commitsRow.map((row) => {
+          const commit = {};
+          const commitRowItems = row.split('|');
+          commit.date = commitRowItems[0];
+          commit.hash = commitRowItems[1];
+          commit.subject = commitRowItems[2];
+          return commit;
+        });
+      })
+      .catch(err => console.error(err));
   }
 
-  getCommits() {
 
+  getCommitFiles(commitHash) {
+    const command = ['cat-file', '-p', commitHash];
+    return executeGitCommand(command, { cwd: this.path })
+      .then((res) => {
+        const commitRows = res.split(/\n+/);
+        const commitTree = commitRows[0].split(' ')[1];
+        return this.getTreeFiles(commitTree);
+      })
+      .catch(err => console.error(err));
   }
 
-  showFile() {
+  getTreeFiles(treeHash) {
+    const treeCommand = ['cat-file', '-p', treeHash];
+    return executeGitCommand(treeCommand, { cwd: this.path })
+      .then(res => filelistFormatter(res))
+      .catch(err => console.error(err));
+  }
 
+  showFile(fileHash) {
+    const command = ['show', fileHash];
+    return executeGitCommand(command, { cwd: this.path });
   }
 }
 

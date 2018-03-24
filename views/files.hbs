@@ -11,10 +11,14 @@
 
 <h1>{{pageTitle}}</h1>
 
-<nav>
-  <a href="files">Files</a>
-  <a href="commits">commits</a>
-</nav>
+<h3>Files</h3>
+
+{{#if parentLevel}}
+  <a href="{{parentLevel}}">[...]</a>
+{{/if}}
+
+{{showFS fileList}}
+
 
 
 
