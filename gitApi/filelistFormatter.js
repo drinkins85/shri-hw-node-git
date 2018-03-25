@@ -8,5 +8,5 @@ module.exports = function (stdout) {
     itemObj.hash = separatedMore[2];
     itemObj.filename = separated[1];
     return itemObj;
-  });
+  }).sort((l, r) => l.type < r.type);
 };

@@ -128,6 +128,16 @@ body {
   text-decoration: underline;
 }
 
+.link_type_tree:before {
+  content: '';
+  display: inline-block;
+  width: 15px;
+  height: 12px;
+  background-color: antiquewhite;
+  border-radius: 2px;
+  margin-right: 8px;
+}
+
 .link_type_file {
   color: darkslategrey;
   cursor: pointer;
@@ -149,7 +159,14 @@ body {
   text-align: center;
   width: 30px;
   display: inline-block;
+  border-radius: 3px;
 }
+
+.parent:hover {
+  background-color: lightgray;
+}
+
+
 .file-viewer {
   display: block;
   background-color: gray;
