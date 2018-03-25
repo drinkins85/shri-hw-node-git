@@ -19,10 +19,13 @@ hbs.registerHelper('showFS', (files) => {
   let list = '';
   files.forEach((item) => {
     if (item.type === 'tree') {
-      list += `<li>[<a href="${item.hash}/" class="tree">${item.filename}</a>]</li>`;
+      list += `<div class="filelist-item filelist-item_type_tree">
+                  <a href="${item.hash}/" class="link_type_tree">${item.filename}</a>
+               </div>`;
     } else {
-      list += `<li><a href="file/${item.hash}" class="file">${item.filename}</a> 
-               <button data-hash="${item.hash}" class="fileBtn">[]</button></li>`;
+      list += `<div class="filelist-item filelist-item_type_file">
+                  <a data-hash="${item.hash}" class="link_type_file fileBtn">${item.filename}</a>
+               </div>`;
     }
   });
   return new hbs.SafeString(`<ul>${list}</ul>`);
@@ -39,7 +42,7 @@ app.get('/', (req, res) => {
       gitApi.getBranchList()
         .then((branchList) => {
           res.render('home.hbs', {
-            pageTitle: 'Main page',
+            pageTitle: 'Branches',
             branchList,
             repoExist: true,
           });

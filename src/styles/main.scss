@@ -1,7 +1,201 @@
 body {
-  background-color: #faebd7;
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
 }
 
-h1 {
-  color: orange;
+.header {
+  width: 100%;
+  background-color: #a9a9a9;
+  padding: 20px;
+  height: 60px;
+  box-sizing: border-box;
 }
+
+.header__logo {
+  color: lightblue;
+}
+
+.page-container {
+  display: flex;
+  position: absolute;
+  width: 100%;
+  background-color: aliceblue;
+  min-height: calc(100% - 60px);
+  align-items: stretch;
+
+}
+
+.content {
+  margin: auto;
+  margin-top: 0;
+  background-color: white;
+  width: 100%;
+  max-width: 800px;
+  height: 100%;
+  box-sizing: border-box;
+  padding: 20px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  box-shadow: darkgrey;
+}
+
+.title {
+  color: gray;
+  font-weight: normal;
+}
+
+.title_size_xl {
+  font-size: 1.5em;
+  text-transform: uppercase;
+}
+
+.branches-item {
+  display: flex;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 5px;
+  border-bottom: 1px solid lightgray;
+
+}
+
+.brinches-item__name {
+  font-size: 1.2em;
+  flex-shrink: 3;
+  flex-basis: 200px;
+}
+
+.branches-item__files {
+  flex-shrink: 1;
+  flex-basis: 100px;
+}
+
+.branches-item__commits {
+  flex-shrink: 1;
+  flex-basis: 100px;
+}
+
+.link {
+  color: darkslategrey;
+}
+
+.link:hover {
+  color: darkred;
+}
+
+.repo-upload-form {
+  width: 100%;
+  margin-top: 30px;
+  background-color: gray;
+  text-align: center;
+  box-sizing: border-box;
+  padding: 30px;
+}
+
+.repo-upload-form__input {
+  width: 80%;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.repo-upload-form__button {
+  width: 100%;
+  max-width: 150px;
+  padding: 10px;
+  box-sizing: border-box;
+  border-radius: 5px;
+  border: 0;
+  background-color: gold;
+  cursor: pointer;
+  color: black;
+}
+
+.repo-upload-form__button:hover {
+  background-color: orange;
+}
+
+.filelist-item {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 5px;
+  border-bottom: 1px solid lightgray;
+}
+
+.link_type_tree {
+  color: darkslategrey;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.link_type_file {
+  color: darkslategrey;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.link_type_tree:hover {
+  color: darkred;
+}
+
+.link_type_folder:hover {
+  color: darkred;
+}
+
+.parent {
+  background-color: gray;
+  color: white;
+  padding: 3px;
+  text-align: center;
+  width: 30px;
+  display: inline-block;
+}
+.file-viewer {
+  display: block;
+  background-color: gray;
+  color: white;
+  max-height: 300px;
+  overflow: auto;
+  padding: 20px;
+  box-sizing: border-box;
+  width: 100%;
+  visibility: hidden;
+
+}
+
+.file-viewer_visible {
+  visibility: visible;
+}
+
+.breadcrumbs__item {
+  font-size: 0.8em;
+}
+
+.commits-item {
+  display: flex;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 5px;
+  border-bottom: 1px solid lightgray;
+}
+
+.commits-item__date {
+  flex-basis: 120px;
+}
+
+.branches-item__hash {
+  width: 100px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+
+.commits-item__link {
+  color: darkslategrey;
+  text-decoration: underline;
+}
+
+.commits-item__link:hover {
+  color: darkred;
+}
+

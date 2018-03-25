@@ -5,7 +5,6 @@
     "no-duplicate-selectors": true,
     "color-hex-case": "lower",
     "color-hex-length": "short",
-    "color-named": "never",
     "selector-no-qualifying-type": true,
     "selector-combinator-space-after": "always",
     "selector-attribute-quotes": "always",

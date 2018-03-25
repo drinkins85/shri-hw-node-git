@@ -3,32 +3,43 @@
 <head>
   <meta charset="UTF-8">
   <title>{{pageTitle}}</title>
+  {{> settings}}
 </head>
 <body>
-
-
 {{> header}}
 
-<h1>{{pageTitle}}</h1>
+<div class="page-container">
+  <div class="content">
 
-{{#if repoExist }}
+  <h1 class="title title_size_xl">{{pageTitle}}</h1>
 
-<h3>Branches</h3>
+  {{#if repoExist }}
 
-<div class="branches">
-  {{#each branchList}}
-    <li> {{this}} <a href="/{{this}}/files/">[files]</a>  <a href="/{{this}}/commits/">[commits]</a></li>
-  {{/each}}
+  <div class="branches">
+    {{#each branchList}}
+      <div class="branches-item">
+        <div class="brinches-item__name">{{this}}</div>
+        <div class="branches-item__files">
+          <a href="/{{this}}/files/" class="link">Files</a>
+        </div>
+        <div class="branches-item__commits">
+          <a href="/{{this}}/commits/" class="link">Commits</a>
+        </div>
+      </div>
+    {{/each}}
+  </div>
+
+  {{/if}}
+
+
+
+  <form class="repo-upload-form">
+    <input type="text" name="repoUrl" placeholder="Repo URL" class="input repo-upload-form__input" >
+    <button type="submit" class="button repo-upload-form__button">Upload</button>
+  </form>
+
+  </div>
 </div>
-
-{{/if}}
-
-
-
-<form class="repo-upload-form">
-  <input type="text" name="repoUrl" placeholder="Ссылка на репозиторий" class="input repo-upload-form__input" >
-  <button type="submit" class="button repo-upload-form__button">Загрузить</button>
-</form>
 
 <script src="/js/bundle.js"></script>
 

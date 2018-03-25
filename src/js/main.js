@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
     button.addEventListener('click', () => {
       getFileContent(hash)
         .then((text) => {
+          target.classList.add('file-viewer_visible');
           target.innerHTML = text;
         });
     });

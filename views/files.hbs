@@ -3,26 +3,36 @@
 <head>
   <meta charset="UTF-8">
   <title>{{pageTitle}}</title>
+  {{> settings}}
 </head>
 <body>
 
 
 {{> header}}
 
-<h1>{{pageTitle}}</h1>
+<div class="page-container">
+  <div class="content">
 
-<h3>Files</h3>
+    <div class="breadcrumbs">
+      <a href="/" class="breadcrumbs__item">Branchlist</a>
+    </div>
 
-{{#if parentLevel}}
-  <a href="{{parentLevel}}">[...]</a>
-{{/if}}
+    <h1 class="title title_size_xl">{{pageTitle}}</h1>
 
-{{showFS fileList}}
+    <h3>Files</h3>
 
-<pre class="file-viewer"></pre>
+    {{#if parentLevel}}
+      <a href="{{parentLevel}}" class="parent">...</a>
+    {{/if}}
+
+    {{showFS fileList}}
+
+    <pre class="file-viewer"></pre>
+
+  </div>
+</div>
 
 <script src="/js/bundle.js"></script>
-
 
 </body>
 </html>
