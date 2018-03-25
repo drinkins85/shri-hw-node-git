@@ -11,6 +11,7 @@ deploy:
   provider: heroku
   api_key:
     secure: PrIMfXVj3ghlYoc3v96nLBldW4lZXjYoJE1MpcSUiNbVKvw+lQiBrp0mQF9HIMR6KBZyZ42RF14/TRqMzCuCnzAr98F5ywkO3X3rJbtceGE9cViPP6T4BiXnLpyg5SUzVs77FmIfjOgv6prA5irh5ROAlN2fSynkDejAnNorh/Z5EfwjPTqlZJ82TM7oMXpyYERGOzOPDpYnnplJiv2SI8BUyDThXntsjxxzosUYxeTKXe6xiXqBA1sO56WIejuvlW146jDXASA0l3qFZFKDXDltShTN455E6wWPCrZiX/6XOc2X5B5jAGjdps+GfJ9hPYLmw56BvT5PuKbW2AE/F/iv4av0H9w284Ku97pg5NiDDK6FXMcK20taSwdSNlepJB2qdewFIhce5HsDRr09w1M3JU3F7UBbN2n9CFo4ZRyDidp9RWwtiONzpPSz5+m2kYfUJBaBANsBbQkODeodEtFSR2XuygV5bKaHJci8O0E8x+kMLXjMVb8gujCKdDOYXrMz7qNmw6D4chVdMSh9yZc9VptvdtCT572OYAlew00XVUriEG57wg3Si0PEZj98VCEpuOvv97aODpOgcq0dSLeg9n7h3kJNKUA+hWaCLq+kXTRWN0apghbpX3lP9EFkfe9oY7I5BudS/oGKhAyWML0Qd2qKmnyW8kuFbees6O8=
-  app: shri-hw-node-git
+  app:
+      master: shri-hw-node-git
   on:
     repo: drinkins85/shri-hw-node-git
