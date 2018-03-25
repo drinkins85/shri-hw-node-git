@@ -3,16 +3,18 @@ const hbs = require('hbs');
 const fs = require('fs');
 const bodyParser = require('body-parser');
 const checkDir = require('./gitApi/checkDir');
+const config = require('./app.config');
 
 const app = express();
 
-const port = process.env.PORT || 5002;
-const host = '0.0.0.0';
+const port = process.env.PORT || config.port || 3000;
+const host = config.host || '0.0.0.0';
+const path = config.path || '_repo';
+const dateFormat = config.dateFormat;
 
-const path = '_repo';
 const GitApi = require('./gitApi/GitApi');
 
-const gitApi = new GitApi(path);
+const gitApi = new GitApi(path, dateFormat);
 
 
 hbs.registerHelper('showFS', (files) => {
