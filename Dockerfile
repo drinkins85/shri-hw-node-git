@@ -5,7 +5,7 @@ WORKDIR /usr/src/app
 RUN apt-get update
 
 RUN apt-get install -y git
-RUN git clone https://github.com/drinkins85/node-git.git _repo
+RUN git clone --bare https://github.com/drinkins85/shri-hw-node-git.git _repo
 
 COPY package*.json ./
 
