@@ -1,12 +1,13 @@
+const moment = require('moment');
 const executeGitCommand = require('./executeGitCommand');
 const filelistFormatter = require('./filelistFormatter');
 const isGitUrl = require('is-git-url');
 const removeDir = require('./removeDir');
 
-
 class GitApi {
-  constructor(path) {
+  constructor(path, dateFormat) {
     this.path = path;
+    this.dateFormat = dateFormat;
   }
 
   getBranchList() {
@@ -43,7 +44,7 @@ class GitApi {
         return commitsRow.map((row) => {
           const commit = {};
           const commitRowItems = row.split('|');
-          commit.date = commitRowItems[0];
+          commit.date = moment.unix(parseInt(commitRowItems[0], 10)).format(this.dateFormat);
           commit.hash = commitRowItems[1];
           commit.subject = commitRowItems[2];
           return commit;

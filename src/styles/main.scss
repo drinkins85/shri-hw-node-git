@@ -180,13 +180,15 @@ body {
 }
 
 .commits-item__date {
-  flex-basis: 120px;
+  flex-basis: 150px;
 }
 
 .branches-item__hash {
-  width: 100px;
+  width: 150px;
   overflow: hidden;
   text-overflow: ellipsis;
+  padding-right: 20px;
+  box-sizing: border-box;
 }
 
 
