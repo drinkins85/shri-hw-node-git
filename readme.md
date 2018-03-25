@@ -1,4 +1,4 @@
-(https://travis-ci.org/drinkins85/shri-hw-node-git.svg?branch=master)
+![travis-ci](https://travis-ci.org/drinkins85/shri-hw-node-git.svg?branch=master)
 
 ## GIT Browser
 
