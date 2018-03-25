@@ -1,18 +1,16 @@
 language: node_js
 node_js:
-  - node
+- node
 os:
-  - linux
+- linux
 notifications:
   email: false
 script:
-  - npm run ci
+- npm run ci
 deploy:
   provider: heroku
   api_key:
-    secure: zaWkxNL9n0dHD5QYzBDqfLDLvasS/R5eFsYARhDJ2amHCzaxd4KHZevw+KKT8xxid053vYkKR6TTDkqX4vIUOn+LhoO2rHhcjJs4md4PHn1Wo7wDb12S/egHzru9u0SzahJnvgE4Zzusy9LWtiGk865/IK6xnv+0EC2l+3o5mQdfh6rowy4looYAA4VMvZcWctItmlr9HwA915ecMbsq4NHmDsVHJ5e43JFL3bzggHcZ93d86XsAQArcxh9Y9r+qMBCkrHflyldrdCNRpLQvceG8+WebVOp+aTQAaNynLcf4FTut50TpjTP8tv+X1BumwLtbUlo86VjNmekFdOFCjfHVArvmGhwZRJJFax61xuwlxm2j5y1FYemotkJj4fcntqXs+0+XgyeOmvXFchH6vx83RNFOkJO4nEnUAvGpjQ5GuVYq+Yjco6LPqt/f5krT6BJUq97C+xM+Y9qdDYEwfjuL0F27a4xNhTybEUtReE5zLJy0yYOA5srW+ob5ru7NMq9jzcfiFRODtuX4ureVWZ9ZXSsAeSNXgcKrfXbXMWBZrmBOfcL+295gw0v/Yzqc+RqsWmMhIKoRiSBb28Xi/l5BcERJ4qfW3vQ246/FEyon7h1eurOOz5fjI1JysUditWT+6a00THLVRUpPrygvlkS7LQzoBAnA50+ZXlcW+xQ=
-  script:
-    - npm run build
-  app: shri-hw-node
+    secure: PrIMfXVj3ghlYoc3v96nLBldW4lZXjYoJE1MpcSUiNbVKvw+lQiBrp0mQF9HIMR6KBZyZ42RF14/TRqMzCuCnzAr98F5ywkO3X3rJbtceGE9cViPP6T4BiXnLpyg5SUzVs77FmIfjOgv6prA5irh5ROAlN2fSynkDejAnNorh/Z5EfwjPTqlZJ82TM7oMXpyYERGOzOPDpYnnplJiv2SI8BUyDThXntsjxxzosUYxeTKXe6xiXqBA1sO56WIejuvlW146jDXASA0l3qFZFKDXDltShTN455E6wWPCrZiX/6XOc2X5B5jAGjdps+GfJ9hPYLmw56BvT5PuKbW2AE/F/iv4av0H9w284Ku97pg5NiDDK6FXMcK20taSwdSNlepJB2qdewFIhce5HsDRr09w1M3JU3F7UBbN2n9CFo4ZRyDidp9RWwtiONzpPSz5+m2kYfUJBaBANsBbQkODeodEtFSR2XuygV5bKaHJci8O0E8x+kMLXjMVb8gujCKdDOYXrMz7qNmw6D4chVdMSh9yZc9VptvdtCT572OYAlew00XVUriEG57wg3Si0PEZj98VCEpuOvv97aODpOgcq0dSLeg9n7h3kJNKUA+hWaCLq+kXTRWN0apghbpX3lP9EFkfe9oY7I5BudS/oGKhAyWML0Qd2qKmnyW8kuFbees6O8=
+  app: shri-hw-node-git
   on:
     repo: drinkins85/shri-hw-node-git

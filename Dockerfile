@@ -5,7 +5,7 @@ WORKDIR /usr/src/app
 RUN apt-get update
 
 RUN apt-get install -y git
-RUN git clone https://github.com/drinkins85/node-git.git newrepo2
+RUN git clone https://github.com/drinkins85/node-git.git _repo
 
 COPY package*.json ./
 
@@ -18,3 +18,4 @@ COPY . .
 EXPOSE ${PORT}
 
 CMD [ "npm", "start" ]
+
