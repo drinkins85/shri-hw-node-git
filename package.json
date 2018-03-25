@@ -15,7 +15,7 @@
     "watch": "set NODE_ENV=development&&webpack --watch",
     "build": "set NODE_ENV=development&&webpack --progress",
     "build-prod": "set NODE_ENV=production&&webpack",
-    "start": "npm run build=prod && node index.js"
+    "start": "npm run build-prod && node index.js"
   },
   "dependencies": {
     "body-parser": "^1.18.2",
