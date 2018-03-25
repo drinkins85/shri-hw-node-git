@@ -10,3 +10,4 @@ module.exports = function (stdout) {
     return itemObj;
   }).sort((l, r) => l.type < r.type);
 };
+

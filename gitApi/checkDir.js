@@ -5,11 +5,11 @@ function checkDir(path) {
     fs.stat(path, (err, stats) => {
       if (!err) {
         if (!stats.isDirectory()) {
-          reject();
+          reject(false);
         }
-        resolve();
+        resolve(true);
       }
-      reject();
+      reject(false);
     });
   });
 }

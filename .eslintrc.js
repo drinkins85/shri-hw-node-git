@@ -6,7 +6,7 @@ module.exports = {
   "rules": {
     "no-use-before-define": ["error", { "functions": false, "classes": true }],
     "func-names": "off",
-    "import/no-extraneous-dependencies": ["error", {"devDependencies": ["**/*webpack*.js", "**/*.config.js"], "optionalDependencies": false, "peerDependencies": false}],
+    "import/no-extraneous-dependencies": ["error", {"devDependencies": ["**/*webpack*.js", "**/*.config.js", "**/*.test.js"], "optionalDependencies": false, "peerDependencies": false}],
     "no-shadow": "off",
     "no-console": "off",
     "max-len": ["error", 120],
@@ -17,6 +17,7 @@ module.exports = {
     "class-methods-use-this": "off",
     "prefer-destructuring": "off",
     "no-param-reassign": "off",
-    "no-useless-escape": "off"
+    "no-useless-escape": "off",
+    "prefer-promise-reject-errors": "off"
   }
 };
