@@ -18,6 +18,8 @@ module.exports = {
     "prefer-destructuring": "off",
     "no-param-reassign": "off",
     "no-useless-escape": "off",
-    "prefer-promise-reject-errors": "off"
+    "prefer-promise-reject-errors": "off",
+    "default-case": "off",
+    "arrow-body-style": "off"
   }
 };

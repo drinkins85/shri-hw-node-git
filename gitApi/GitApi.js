@@ -1,8 +1,7 @@
 const moment = require('moment');
-const executeGitCommand = require('./executeGitCommand');
-const filelistFormatter = require('./filelistFormatter');
 const isGitUrl = require('is-git-url');
 const removeDir = require('./removeDir');
+const { spawn } = require('child_process');
 
 class GitApi {
   constructor(path, dateFormat) {
@@ -12,7 +11,7 @@ class GitApi {
 
   getBranchList() {
     const command = ['branch', '--list'];
-    return executeGitCommand(command, { cwd: this.path })
+    return this.executeGitCommand(command, { cwd: this.path })
       .then((res) => {
         const branches = res.split(/\n\s*/).filter(brName => brName !== '');
         return branches.map((branchName) => {
@@ -28,8 +27,8 @@ class GitApi {
 
   getBranchFiles(branchName) {
     const command = ['cat-file', '-p', `${branchName}^{tree}`];
-    return executeGitCommand(command, { cwd: this.path })
-      .then(res => filelistFormatter(res))
+    return this.executeGitCommand(command, { cwd: this.path })
+      .then(res => this.filelistFormatter(res))
       .catch((err) => {
         console.error(err);
         return [];
@@ -38,7 +37,7 @@ class GitApi {
 
   getBranchCommits(branchName) {
     const command = ['log', branchName, '--pretty=format:%at|%H|%s'];
-    return executeGitCommand(command, { cwd: this.path })
+    return this.executeGitCommand(command, { cwd: this.path })
       .then((res) => {
         const commitsRow = res.split('\n');
         return commitsRow.map((row) => {
@@ -55,7 +54,7 @@ class GitApi {
 
   getCommitFiles(commitHash) {
     const command = ['cat-file', '-p', commitHash];
-    return executeGitCommand(command, { cwd: this.path })
+    return this.executeGitCommand(command, { cwd: this.path })
       .then((res) => {
         const commitRows = res.split(/\n+/);
         const commitTree = commitRows[0].split(' ')[1];
@@ -66,14 +65,14 @@ class GitApi {
 
   getTreeFiles(treeHash) {
     const treeCommand = ['cat-file', '-p', treeHash];
-    return executeGitCommand(treeCommand, { cwd: this.path })
-      .then(res => filelistFormatter(res))
+    return this.executeGitCommand(treeCommand, { cwd: this.path })
+      .then(res => this.filelistFormatter(res))
       .catch(err => console.error(err));
   }
 
   showFile(fileHash) {
     const command = ['show', fileHash];
-    return executeGitCommand(command, { cwd: this.path });
+    return this.executeGitCommand(command, { cwd: this.path });
   }
 
   cloneRepo(repoUrl) {
@@ -83,13 +82,44 @@ class GitApi {
     return removeDir(this.path)
       .then(() => {
         const command = ['clone', '--bare', repoUrl, this.path];
-        return executeGitCommand(command)
+        return this.executeGitCommand(command)
           .then(() => console.log('Репозиторий склонирован'))
           .catch(err => console.log(err));
       })
       .catch(err => console.log(err));
   }
 
+  executeGitCommand(command, options) {
+    return new Promise((resolve, reject) => {
+      const git = spawn('git', command, options);
+      const out = [];
+      git.stdout.on('data', (data) => {
+        out.push(data);
+      });
+      git.stderr.on('data', (data) => {
+        out.push(data);
+      });
+      git.on('close', (code) => {
+        if (code !== 0) {
+          return reject(new Error(`${out} child process exited with code ${code}`));
+        }
+        return resolve(out.toString());
+      });
+    });
+  }
+
+  filelistFormatter(stdout) {
+    const branchTree = stdout.split(/\n\s*/).filter(brName => brName !== '');
+    return branchTree.map((item) => {
+      const separated = item.split('\t');
+      const separatedMore = separated[0].split(' ');
+      const itemObj = {};
+      itemObj.type = separatedMore[1];
+      itemObj.hash = separatedMore[2];
+      itemObj.filename = separated[1];
+      return itemObj;
+    }).sort((l, r) => l.type < r.type);
+  }
 }
 
 module.exports = GitApi;
