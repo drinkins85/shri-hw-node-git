@@ -19,6 +19,12 @@ class GitApiTest extends GitApi {
           resolve('1521813838|6af81a1a790e0786b8cbf6f31bf4cced113b2d7a|Общая структура класса GitApi');
           break;
         }
+        case 'cat-file -p 6af81a1a': resolve('100644 blob 12345678910\tfilename');
+          break;
+        case 'cat-file -p ced113b2d7a': resolve('tree 6af81a1a');
+          break;
+        case 'show ced113b2d7a': resolve('fileContent');
+          break;
       }
     });
   }
@@ -50,7 +56,7 @@ describe('GitApi', () => {
 
   describe('getBranchList', () => {
     it('Должна возвращать массив ', () => {
-      return expect(gitApiTest.getBranchList().then(res => res)).to.eventually.be.a('Array');
+      return expect(gitApiTest.getBranchList()).to.eventually.be.a('Array');
     });
     it('Элементы массива содержат названия веток', () => {
       return expect(gitApiTest.getBranchList().then(res => res[0])).to.eventually.equal('master');
@@ -59,7 +65,7 @@ describe('GitApi', () => {
 
   describe('getBranchFiles', () => {
     it('Должна возвращать массив ', () => {
-      return expect(gitApiTest.getBranchFiles('master').then(res => res)).to.eventually.be.a('Array');
+      return expect(gitApiTest.getBranchFiles('master')).to.eventually.be.a('Array');
     });
     it('Правильно возвращает тип файла', () => {
       const filelist = gitApiTest.getBranchFiles('master');
@@ -77,7 +83,7 @@ describe('GitApi', () => {
 
   describe('getBranchCommits', () => {
     it('Должна возвращать массив ', () => {
-      return expect(gitApiTest.getBranchCommits('master').then(res => res)).to.eventually.be.a('Array');
+      return expect(gitApiTest.getBranchCommits('master')).to.eventually.be.a('Array');
     });
     it('Правильно возвращает дату коммита', () => {
       const filelist = gitApiTest.getBranchCommits('master');
@@ -90,6 +96,58 @@ describe('GitApi', () => {
     it('Правильно возвращает описание коммита', () => {
       const filelist = gitApiTest.getBranchCommits('master');
       return expect(filelist.then(res => res[0].subject)).to.eventually.equal('Общая структура класса GitApi');
+    });
+  });
+
+  describe('getTreeFiles', () => {
+    it('Должна возвращать массив ', () => {
+      return expect(gitApiTest.getTreeFiles('6af81a1a')).to.eventually.be.a('Array');
+    });
+
+    it('Правильно возвращает тип файла', () => {
+      const filelist = gitApiTest.getTreeFiles('6af81a1a');
+      return expect(filelist.then(res => res[0].type)).to.eventually.equal('blob');
+    });
+
+    it('Правильно возвращает хэш файла', () => {
+      const filelist = gitApiTest.getTreeFiles('6af81a1a');
+      return expect(filelist.then(res => res[0].hash)).to.eventually.equal('12345678910');
+    });
+    it('Правильно возвращает имя файла', () => {
+      const filelist = gitApiTest.getTreeFiles('6af81a1a');
+      return expect(filelist.then(res => res[0].filename)).to.eventually.equal('filename');
+    });
+  });
+
+  describe('getCommitFiles', () => {
+    it('Должна возвращать массив ', () => {
+      return expect(gitApiTest.getCommitFiles('ced113b2d7a')).to.eventually.be.a('Array');
+    });
+
+    it('Правильно возвращает тип файла', () => {
+      const filelist = gitApiTest.getCommitFiles('ced113b2d7a');
+      return expect(filelist.then(res => res[0].type)).to.eventually.equal('blob');
+    });
+
+    it('Правильно возвращает хэш файла', () => {
+      const filelist = gitApiTest.getCommitFiles('ced113b2d7a');
+      return expect(filelist.then(res => res[0].hash)).to.eventually.equal('12345678910');
+    });
+    it('Правильно возвращает имя файла', () => {
+      const filelist = gitApiTest.getCommitFiles('ced113b2d7a');
+      return expect(filelist.then(res => res[0].filename)).to.eventually.equal('filename');
+    });
+  });
+
+  describe('showFile', () => {
+    it('Должна возвращать содержимое файла', () => {
+      return expect(gitApiTest.showFile('ced113b2d7a')).to.eventually.equal('fileContent');
+    });
+  });
+
+  describe('cloneRepo', () => {
+    it('Должна возвращать reject при неправильном url', () => {
+      return expect(gitApiTest.cloneRepo('http://wrong/url')).to.be.rejected;
     });
   });
 });

@@ -11,7 +11,7 @@
   "scripts": {
     "ci": "npm run test && npm run eslint && npm run build",
     "eslint": "node_modules/.bin/eslint *.js",
-    "test": "node_modules/.bin/mocha tests/*.test.js",
+    "test": "nyc mocha tests/*.test.js",
     "server": "browser-sync start --server",
     "watch": "set NODE_ENV=development&&webpack --watch",
     "build": "set NODE_ENV=development&&webpack --progress",
@@ -24,6 +24,7 @@
     "hbs": "^4.0.1",
     "is-git-url": "^1.0.0",
     "moment": "^2.21.0",
+    "nyc": "^11.6.0",
     "rimraf": "^2.6.2",
     "selenium-standalone": "^6.13.0"
   },

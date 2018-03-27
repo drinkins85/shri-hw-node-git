@@ -1,7 +1,7 @@
 const assert = require('chai').assert;
 const config = require('../../app.config');
 
-const url = `${config.host}:${config.port}`;
+const url = `localhost:${config.port}`;
 
 describe('Branches', () => {
   it('Должен показывать заголовок BRANCHES', function () {
@@ -103,7 +103,7 @@ describe('Commits', () => {
     return this.browser
       .url(url)
       .click('.branches-item:nth-child(1) .branches-item__commits .link')
-      .getText('.branches-item__hash')
+      .getText('.commits-item__hash')
       .then((hash) => {
         commitHash = hash;
         return this.browser;
