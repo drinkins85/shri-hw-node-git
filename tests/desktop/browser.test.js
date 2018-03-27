@@ -1,12 +1,10 @@
 const assert = require('chai').assert;
-const config = require('../../app.config');
 
-const url = `localhost:${config.port}`;
 
 describe('Branches', () => {
   it('Должен показывать заголовок BRANCHES', function () {
     return this.browser
-      .url(url)
+      .url('/')
       .getTitle('.title')
       .then((title) => {
         assert.equal(title, 'Branches');
@@ -15,7 +13,7 @@ describe('Branches', () => {
 
   it('Должен выводиться список веток', function () {
     return this.browser
-      .url(url)
+      .url('/')
       .isExisting('.branches-item')
       .then((exists) => {
         assert.ok(exists, true);
@@ -27,7 +25,7 @@ describe('Branches', () => {
 describe('Форма загрузки', () => {
   it('Форма должна отображаться', function () {
     return this.browser
-      .url(url)
+      .url('/')
       .isExisting('.repo-upload-form')
       .then((exists) => {
         assert.ok(exists, true);
@@ -36,7 +34,7 @@ describe('Форма загрузки', () => {
 
   it('При отправке пустого запроса выводится сообщение об ошибке', function () {
     return this.browser
-      .url(url)
+      .url('/')
       .click('.repo-upload-form__button')
       .getText('.repo-upload-form__message')
       .then((message) => {
@@ -48,7 +46,7 @@ describe('Форма загрузки', () => {
 describe('Files', () => {
   it('Отображается список файлов', function () {
     return this.browser
-      .url(url)
+      .url('/')
       .click('.branches-item:nth-child(1) .branches-item__files .link')
       .isExisting('.filelist-item')
       .then((exists) => {
@@ -59,7 +57,7 @@ describe('Files', () => {
   it('Можно перейти в каталог и вернуться на уровень выше', function () {
     let urlBeforeClick = '';
     return this.browser
-      .url(url)
+      .url('/')
       .click('.branches-item:nth-child(1) .branches-item__files .link')
       .getUrl()
       .then((currentUrl) => {
@@ -76,7 +74,7 @@ describe('Files', () => {
 
   it('Можно посмотреть содержимое файла', function () {
     return this.browser
-      .url(url)
+      .url('/')
       .click('.branches-item:nth-child(1) .branches-item__files .link')
       .click('.filelist-item .link_type_file')
       .pause(3000)
@@ -90,7 +88,7 @@ describe('Files', () => {
 describe('Commits', () => {
   it('Отображается список комитов', function () {
     return this.browser
-      .url(url)
+      .url('/')
       .click('.branches-item:nth-child(1) .branches-item__commits .link')
       .isExisting('.commits-item')
       .then((exists) => {
@@ -101,7 +99,7 @@ describe('Commits', () => {
   it('Отображает список файлов коммита', function () {
     let commitHash = '';
     return this.browser
-      .url(url)
+      .url('/')
       .click('.branches-item:nth-child(1) .branches-item__commits .link')
       .getText('.commits-item__hash')
       .then((hash) => {

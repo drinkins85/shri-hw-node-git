@@ -164,7 +164,7 @@ app.post('/git-clone', (req, res) => {
     .catch(err => res.send('FAIL ', err));
 });
 
-app.listen(port, host);
-
-console.log(`App listen on port ${port}`);
+app.listen(port, host, () => {
+  console.log(`App listen on port ${port}`);
+});
 
