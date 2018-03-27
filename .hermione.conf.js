@@ -4,6 +4,7 @@ const url = `http://${config.host}:${config.port}`;
 
 module.exports = {
   baseUrl: url,
+
   sets: {
     desktop: {
       files: 'tests/desktop'
@@ -19,6 +20,6 @@ module.exports = {
       desiredCapabilities: {
         browserName: 'firefox'
       }
-    } 
+    }
   }
 };
