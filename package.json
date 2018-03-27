@@ -12,7 +12,6 @@
     "ci": "npm run test && npm run eslint && npm run build",
     "eslint": "node_modules/.bin/eslint *.js",
     "test": "node_modules/.bin/mocha tests/*.test.js",
-    "test-int": "hermione",
     "server": "browser-sync start --server",
     "watch": "set NODE_ENV=development&&webpack --watch",
     "build": "set NODE_ENV=development&&webpack --progress",
