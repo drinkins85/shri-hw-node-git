@@ -20,6 +20,7 @@ module.exports = {
     "no-useless-escape": "off",
     "prefer-promise-reject-errors": "off",
     "default-case": "off",
-    "arrow-body-style": "off"
+    "arrow-body-style": "off",
+    "no-undef": "off"
   }
 };

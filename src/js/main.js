@@ -22,11 +22,15 @@ document.addEventListener('DOMContentLoaded', () => {
       e.preventDefault();
       const url = uploadForm.querySelector('.repo-upload-form__input').value;
       const btn = uploadForm.querySelector('.repo-upload-form__button');
+      const message = uploadForm.querySelector('.repo-upload-form__message');
       btn.innerHTML = 'Загрузка';
       btn.setAttribute('disabled', 'disabled');
       uploadRepo(url)
         .then(() => {
           window.location.reload();
+        })
+        .catch(() => {
+          message.innerHTML = 'Не указан URL репозитория';
         });
     });
   }
