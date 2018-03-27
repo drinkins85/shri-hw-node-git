@@ -6,7 +6,7 @@ function removeDir(path) {
       if (err) {
         reject(err);
       }
-      resolve();
+      resolve(path);
     });
   });
 }
