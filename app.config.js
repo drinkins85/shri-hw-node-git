@@ -1,6 +1,6 @@
 module.exports = {
-  port: 3000,
-  host: '0.0.0.0',
+  port: 3002,
+  host: '127.0.0.1',
   path: '_repo',
   dateFormat: 'D.MM.YYYY H:mm',
 };
