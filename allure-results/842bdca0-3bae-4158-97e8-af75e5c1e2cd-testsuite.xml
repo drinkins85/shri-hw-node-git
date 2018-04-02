@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ns2:test-suite xmlns:ns2="urn:model.allure.qatools.yandex.ru" start="1522676300142" stop="1522676325317">
+	<name>Commits</name>
+	<title>Commits</title>
+	<test-cases>
+		<test-case start="1522676300154" stop="1522676323349" status="passed">
+			<name>Отображается список комитов</name>
+			<title>Отображается список комитов</title>
+			<description></description>
+			<labels>
+			</labels>
+			<parameters>
+				<parameter kind="environment-variable" name="file" value="tests\desktop\browser.test.js"/>
+				<parameter kind="environment-variable" name="browser" value="firefox"/>
+				<parameter kind="environment-variable" name="sessionId" value=""/>
+				<parameter kind="environment-variable" name="url" value="http://127.0.0.1:3002/"/>
+			</parameters>
+			<steps>
+			</steps>
+			<attachments>
+			</attachments>
+		</test-case>
+		<test-case start="1522676300155" stop="1522676325316" status="passed">
+			<name>Отображает список файлов коммита</name>
+			<title>Отображает список файлов коммита</title>
+			<description></description>
+			<labels>
+			</labels>
+			<parameters>
+				<parameter kind="environment-variable" name="file" value="tests\desktop\browser.test.js"/>
+				<parameter kind="environment-variable" name="browser" value="firefox"/>
+				<parameter kind="environment-variable" name="sessionId" value=""/>
+				<parameter kind="environment-variable" name="url" value="http://127.0.0.1:3002/"/>
+			</parameters>
+			<steps>
+			</steps>
+			<attachments>
+			</attachments>
+		</test-case>
+	</test-cases>
+</ns2:test-suite>

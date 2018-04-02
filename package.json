@@ -9,8 +9,8 @@
     "node": ">=8.4.0"
   },
   "scripts": {
-    "ci": "npm run test && npm run eslint && npm run build",
-    "eslint": "node_modules/.bin/eslint *.js",
+    "ci": "npm run test && npm run lint:js && npm run build",
+    "lint:js": "node_modules/.bin/eslint *.js",
     "test": "nyc mocha tests/*.test.js",
     "server": "browser-sync start --server",
     "watch": "set NODE_ENV=development&&webpack --watch",

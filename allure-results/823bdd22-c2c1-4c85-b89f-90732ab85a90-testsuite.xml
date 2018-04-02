@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ns2:test-suite xmlns:ns2="urn:model.allure.qatools.yandex.ru" start="1522675954742" stop="1522675967055">
+	<name>Files</name>
+	<title>Files</title>
+	<test-cases>
+		<test-case start="1522675954757" stop="1522675962504" status="passed">
+			<name>Отображается список файлов</name>
+			<title>Отображается список файлов</title>
+			<description></description>
+			<labels>
+			</labels>
+			<parameters>
+				<parameter kind="environment-variable" name="file" value="tests\desktop\browser.test.js"/>
+				<parameter kind="environment-variable" name="browser" value="firefox"/>
+				<parameter kind="environment-variable" name="sessionId" value=""/>
+				<parameter kind="environment-variable" name="url" value="http://127.0.0.1:3002/"/>
+			</parameters>
+			<steps>
+			</steps>
+			<attachments>
+			</attachments>
+		</test-case>
+		<test-case start="1522675954757" stop="1522675963409" status="passed">
+			<name>Можно перейти в каталог и вернуться на уровень выше</name>
+			<title>Можно перейти в каталог и вернуться на уровень выше</title>
+			<description></description>
+			<labels>
+			</labels>
+			<parameters>
+				<parameter kind="environment-variable" name="file" value="tests\desktop\browser.test.js"/>
+				<parameter kind="environment-variable" name="browser" value="firefox"/>
+				<parameter kind="environment-variable" name="sessionId" value=""/>
+				<parameter kind="environment-variable" name="url" value="http://127.0.0.1:3002/"/>
+			</parameters>
+			<steps>
+			</steps>
+			<attachments>
+			</attachments>
+		</test-case>
+		<test-case start="1522675954757" stop="1522675967055" status="passed">
+			<name>Можно посмотреть содержимое файла</name>
+			<title>Можно посмотреть содержимое файла</title>
+			<description></description>
+			<labels>
+			</labels>
+			<parameters>
+				<parameter kind="environment-variable" name="file" value="tests\desktop\browser.test.js"/>
+				<parameter kind="environment-variable" name="browser" value="firefox"/>
+				<parameter kind="environment-variable" name="sessionId" value=""/>
+				<parameter kind="environment-variable" name="url" value="http://127.0.0.1:3002/"/>
+			</parameters>
+			<steps>
+			</steps>
+			<attachments>
+			</attachments>
+		</test-case>
+	</test-cases>
+</ns2:test-suite>

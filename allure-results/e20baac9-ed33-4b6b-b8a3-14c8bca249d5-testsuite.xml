@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ns2:test-suite xmlns:ns2="urn:model.allure.qatools.yandex.ru" start="1522675699312" stop="1522675708832">
+	<name>Форма загрузки</name>
+	<title>Форма загрузки</title>
+	<test-cases>
+		<test-case start="1522675699328" stop="1522675707994" status="passed">
+			<name>Форма должна отображаться</name>
+			<title>Форма должна отображаться</title>
+			<description></description>
+			<labels>
+			</labels>
+			<parameters>
+				<parameter kind="environment-variable" name="file" value="tests\desktop\browser.test.js"/>
+				<parameter kind="environment-variable" name="browser" value="firefox"/>
+				<parameter kind="environment-variable" name="sessionId" value=""/>
+				<parameter kind="environment-variable" name="url" value="http://127.0.0.1:3002/"/>
+			</parameters>
+			<steps>
+			</steps>
+			<attachments>
+			</attachments>
+		</test-case>
+		<test-case start="1522675699328" stop="1522675708831" status="passed">
+			<name>При отправке пустого запроса выводится сообщение об ошибке</name>
+			<title>При отправке пустого запроса выводится сообщение об ошибке</title>
+			<description></description>
+			<labels>
+			</labels>
+			<parameters>
+				<parameter kind="environment-variable" name="file" value="tests\desktop\browser.test.js"/>
+				<parameter kind="environment-variable" name="browser" value="firefox"/>
+				<parameter kind="environment-variable" name="sessionId" value=""/>
+				<parameter kind="environment-variable" name="url" value="http://127.0.0.1:3002/"/>
+			</parameters>
+			<steps>
+			</steps>
+			<attachments>
+			</attachments>
+		</test-case>
+	</test-cases>
+</ns2:test-suite>

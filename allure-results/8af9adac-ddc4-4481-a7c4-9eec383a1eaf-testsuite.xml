@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ns2:test-suite xmlns:ns2="urn:model.allure.qatools.yandex.ru" start="1522676223577" stop="1522676243954">
+	<name>Commits</name>
+	<title>Commits</title>
+	<test-cases>
+		<test-case start="1522676223585" stop="1522676241481" status="passed">
+			<name>Отображается список комитов</name>
+			<title>Отображается список комитов</title>
+			<description></description>
+			<labels>
+			</labels>
+			<parameters>
+				<parameter kind="environment-variable" name="file" value="tests\desktop\browser.test.js"/>
+				<parameter kind="environment-variable" name="browser" value="chrome"/>
+				<parameter kind="environment-variable" name="sessionId" value=""/>
+				<parameter kind="environment-variable" name="url" value="http://127.0.0.1:3002/"/>
+			</parameters>
+			<steps>
+			</steps>
+			<attachments>
+			</attachments>
+		</test-case>
+		<test-case start="1522676223585" stop="1522676243953" status="failed">
+			<name>Отображает список файлов коммита</name>
+			<title>Отображает список файлов коммита</title>
+			<description></description>
+			<labels>
+			</labels>
+			<parameters>
+				<parameter kind="environment-variable" name="file" value="tests\desktop\browser.test.js"/>
+				<parameter kind="environment-variable" name="browser" value="chrome"/>
+				<parameter kind="environment-variable" name="sessionId" value=""/>
+				<parameter kind="environment-variable" name="url" value="http://127.0.0.1:3002/"/>
+			</parameters>
+			<steps>
+			</steps>
+			<attachments>
+				<attachment title="Screenshot" source="54b7ff3a-f2da-4dac-95c3-9c869e2358a8-attachment.png" type="image/png" size="43175"/>
+			</attachments>
+			<failure>
+				<message>java.net.ConnectException: Connection refused: connect</message>
+				<stack-trace>Error: An unknown server-side error occurred while processing the command.
+    at elementIdText(&quot;0.4854122531715632-9&quot;) - C:\Users\Drinkins\AppData\Roaming\npm\node_modules\hermione\node_modules\webdriverio\build\lib\commands\getText.js:35:50</stack-trace>
+			</failure>
+		</test-case>
+	</test-cases>
+</ns2:test-suite>

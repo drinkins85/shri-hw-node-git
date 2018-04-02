@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ns2:test-suite xmlns:ns2="urn:model.allure.qatools.yandex.ru" start="1522675954742" stop="1522675959216">
+	<name>Branches</name>
+	<title>Branches</title>
+	<test-cases>
+		<test-case start="1522675954742" stop="1522675958852" status="passed">
+			<name>Должен показывать заголовок BRANCHES</name>
+			<title>Должен показывать заголовок BRANCHES</title>
+			<description></description>
+			<labels>
+			</labels>
+			<parameters>
+				<parameter kind="environment-variable" name="file" value="tests\desktop\browser.test.js"/>
+				<parameter kind="environment-variable" name="browser" value="chrome"/>
+				<parameter kind="environment-variable" name="sessionId" value=""/>
+				<parameter kind="environment-variable" name="url" value="http://127.0.0.1:3002/"/>
+			</parameters>
+			<steps>
+			</steps>
+			<attachments>
+			</attachments>
+		</test-case>
+		<test-case start="1522675954742" stop="1522675959201" status="passed">
+			<name>Должен выводиться список веток</name>
+			<title>Должен выводиться список веток</title>
+			<description></description>
+			<labels>
+			</labels>
+			<parameters>
+				<parameter kind="environment-variable" name="file" value="tests\desktop\browser.test.js"/>
+				<parameter kind="environment-variable" name="browser" value="chrome"/>
+				<parameter kind="environment-variable" name="sessionId" value=""/>
+				<parameter kind="environment-variable" name="url" value="http://127.0.0.1:3002/"/>
+			</parameters>
+			<steps>
+			</steps>
+			<attachments>
+			</attachments>
+		</test-case>
+	</test-cases>
+</ns2:test-suite>

@@ -21,5 +21,10 @@ module.exports = {
         browserName: 'firefox'
       }
     }
-  }
+  },
+  plugins: {
+    'allure-reporter': {
+      targetDir: 'allure-results'
+    }
+  },
 };
